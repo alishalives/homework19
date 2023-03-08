@@ -2,6 +2,7 @@ from dao.model.director import Director
 
 
 class DirectorDAO:
+    """ Создание слоя DAO с методами обработки данных """
     def __init__(self, session):
         self.session = session
 
@@ -11,20 +12,17 @@ class DirectorDAO:
     def get_all(self):
         return self.session.query(Director).all()
 
-    def create(self, director_d):
-        ent = Director(**director_d)
-        self.session.add(ent)
+    def create(self, data):
+        director = Director(**data)
+        self.session.add(director)
         self.session.commit()
-        return ent
+        return director
 
-    def delete(self, rid):
-        director = self.get_one(rid)
+    def delete(self, director):
         self.session.delete(director)
         self.session.commit()
 
-    def update(self, director_d):
-        director = self.get_one(director_d.get("id"))
-        director.name = director_d.get("name")
-
+    def update(self, director):
         self.session.add(director)
         self.session.commit()
+        return director

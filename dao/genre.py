@@ -2,6 +2,7 @@ from dao.model.genre import Genre
 
 
 class GenreDAO:
+    """ Создание слоя DAO с методами обработки данных """
     def __init__(self, session):
         self.session = session
 
@@ -11,20 +12,17 @@ class GenreDAO:
     def get_all(self):
         return self.session.query(Genre).all()
 
-    def create(self, genre_d):
-        ent = Genre(**genre_d)
-        self.session.add(ent)
+    def create(self, data):
+        genre = Genre(**data)
+        self.session.add(genre)
         self.session.commit()
-        return ent
+        return genre
 
-    def delete(self, rid):
-        genre = self.get_one(rid)
+    def delete(self, genre):
         self.session.delete(genre)
         self.session.commit()
 
-    def update(self, genre_d):
-        genre = self.get_one(genre_d.get("id"))
-        genre.name = genre_d.get("name")
-
+    def update(self, genre):
         self.session.add(genre)
         self.session.commit()
+        return genre
