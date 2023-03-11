@@ -2,7 +2,14 @@ POST http://127.0.0.1:5000/auth/
 Content-Type: application/json
 
 {
-  "username": "Alina",
-  "password": "12345",
-  "role": "admin"
+  "username": "Sasha",
+  "password": "frodo",
+  "role": "user"
 }
+####
+
+//{
+//  "username": "Alina",
+//  "password": "12345",
+//  "role": "admin"
+//}

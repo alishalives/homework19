@@ -7,6 +7,7 @@ from flask_restx import Resource, Namespace
 
 from implemented import user_service
 from constants import ALGO, SECRET
+from service.auth import AuthService
 
 # Регистрация неймспейса
 auth_ns = Namespace('auth')
@@ -29,6 +30,8 @@ class AuthView(Resource):
         user = user_service.get_by_username(username)
 
         if user is None:
+            return {"error": "Неверные учётные данные"}, 401
+        elif not AuthService.compare_passwords(user.password, password):
             return {"error": "Неверные учётные данные"}, 401
 
         data = {
