@@ -1,3 +1,4 @@
+import base64
 import hashlib
 
 from dao.user import UserDAO
@@ -9,12 +10,12 @@ class UserService:
         self.dao = dao
 
     def get_hash(self, password):
-        return hashlib.pbkdf2_hmac(
+        return base64.b64encode(hashlib.pbkdf2_hmac(
             'sha256',
             password.encode('utf-8'),
             PWD_HASH_SALT,
             PWD_HASH_ITERATIONS
-        ).decode("utf-8", "ignore")
+        ))
 
     def get_one(self, bid):
         return self.dao.get_one(bid)

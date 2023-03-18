@@ -36,7 +36,6 @@ class AuthView(Resource):
 
         data = {
             "username": user.username,
-            "password": user.password,
             "role": user.role
         }
         min30 = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
@@ -66,14 +65,12 @@ class AuthView(Resource):
             abort(400)
 
         username = data.get("username")
-        password = data.get("password")
         role = data.get("role")
 
         user = user_service.get_by_username(username)
 
         data = {
             "username": user.username,
-            "password": user.password,
             "role": role
         }
         min30 = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
