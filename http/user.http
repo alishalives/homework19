@@ -3,9 +3,9 @@ Content-Type: application/json
 Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsaW5hIiwicGFzc3dvcmQiOiIxMjM0NSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTY3ODMwNTk3MX0.nOUJ4ufGbgeMUBMFSig57Urn-V0JerYB7AaTepJLARg"
 
 {
-  "username": "Oleg",
+  "username": "velali",
   "password": "qwerty",
-  "role": "user"
+  "role": "admin"
 }
 ###
 

@@ -5,7 +5,7 @@ import jwt as jwt
 from flask import request, abort
 from flask_restx import Resource, Namespace
 
-from implemented import user_service
+from implemented import user_service, auth_service
 from constants import ALGO, SECRET
 from service.auth import AuthService
 
@@ -31,7 +31,7 @@ class AuthView(Resource):
 
         if user is None:
             return {"error": "Неверные учётные данные"}, 401
-        elif not AuthService.compare_passwords(user.password, password):
+        elif not auth_service.compare_passwords(user.password, password):
             return {"error": "Неверные учётные данные"}, 401
 
         data = {
